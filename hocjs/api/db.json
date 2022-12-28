@@ -1,0 +1,21 @@
+{
+  "users": [
+   {
+    "id": 1,
+    "name": "Hoàng An",
+    "status": true
+   },
+
+   {
+    "id": 2,
+    "name": "Hoàng An 2",
+    "status": true
+   },
+
+   {
+    "id": 3,
+    "name": "Hoàng An 3",
+    "status": true
+   }
+  ]
+}
