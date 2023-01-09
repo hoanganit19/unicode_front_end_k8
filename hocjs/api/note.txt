@@ -78,3 +78,31 @@ Các phương thức call api trong Javascript
 - XmlHttpRequest 
 - fetch => tự động trả về 1 promise (Xử lý bất đồng bộ trong JS)
 - Thư viện ngoài: axios
+
+Authentication => Xác thực (Đăng nhập)
+- API
+- Call api => Check xác thực (Do phía server xử lý)
+
+Quy trình login: 
+
+1. Front-End call api login (email, password)
+2. Server xử lý xem có hợp lệ hay không? 
+- TH1: Thông tin không hợp lệ => Response => Front-End thông báo đăng nhập không hợp lệ
+- TH2: Thông tin hợp lệ => Server tạo Token => Trả về Response => Front-End sẽ lưu lại (Storage ở trình duyệt, Cookie,...)
+
+Quy trình lấy thông tin đăng nhập (Sau khi login)
+- Call api profile (Gửi kèm Token)
+- Nếu token hợp lệ => Server trả về thông tin tương ứng 
+- Nếu token không hợp lệ => Server sẽ chuyển về trang login
+
+Quy trình logout 
+- Call api đăng xuất (Xóa token trên server)
+- Nếu server xóa token thành công => Trả về trạng thái => Client xóa token trên trình duyệt
+
+=> Lưu ý quá trình xóa token trên server
+Nếu hệ thống hoạt động đa nền tảng (web, apps,...)
+Khi xóa => Gửi thiết bị đang xóa
+
+=> Giả lập server Authentication: json-server-auth
+
+Authorization => Phân quyền => Được làm gì

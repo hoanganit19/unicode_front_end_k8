@@ -1,3 +1,7 @@
+//Check login
+if (!localStorage.getItem("token")) {
+  window.location.href = "login.html";
+}
 //var res = fetch("http://localhost:3000/users"); //trả về 1 promise
 
 var addBtn = document.querySelector(".btn-add");
@@ -12,7 +16,15 @@ var editModalObj = document.querySelector("#edit-modal");
 
 var filterForm = document.querySelector(".filters");
 
+var paginationOutput = document.querySelector(".pagination-output");
+
 var serverApi = `http://localhost:3000`;
+
+var limit = 3; //số bản ghi trên 1 trang
+
+var filters = {}; //Lưu trữ filters dạng toàn cục
+
+var currentPage = 1;
 
 var toast = function (message, type = "success") {
   if (type === "success") {
@@ -36,8 +48,9 @@ var toast = function (message, type = "success") {
   }).showToast();
 };
 
-var getUsers = function (filters = {}) {
-  const sort = "_sort=id&_order=desc";
+var getUsers = function (filters = {}, limit = 10, page = 1) {
+  const sort = "_sort=id&_order=desc&_limit=" + limit + "&_page=" + page;
+
   if (Object.keys(filters).length) {
     var searchParams = new URLSearchParams(filters).toString();
     var apiUrl = `${serverApi}/users?${sort}&${searchParams}`;
@@ -45,8 +58,13 @@ var getUsers = function (filters = {}) {
     var apiUrl = `${serverApi}/users?${sort}`;
   }
 
+  var userCount = 0;
+
   fetch(`${apiUrl}`)
     .then(function (response) {
+      //tính tổng số bản ghi
+      userCount = response.headers.get("x-total-count");
+
       return response.json();
     })
     .then(function (users) {
@@ -95,11 +113,90 @@ var getUsers = function (filters = {}) {
 
           tbody.appendChild(tr);
         });
+
+        //Xử lý phân trang
+
+        //Tính số trang = tổng số bản ghi / số bản ghi trên 1 trang
+        var maxPage = Math.ceil(userCount / limit);
+
+        paginationOutput.innerText = "";
+        var paginationUl = document.createElement("ul");
+        paginationUl.classList.add("pagination", "justify-content-end");
+
+        //prev button
+        if (page > 1) {
+          var paginationLi = document.createElement("li");
+          paginationLi.classList.add("page-item");
+          var pageLink = document.createElement("a");
+          pageLink.classList.add("page-link");
+          pageLink.href = "#";
+          pageLink.innerHTML = "Trước";
+          pageLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            setPage(page - 1);
+          });
+          paginationLi.appendChild(pageLink);
+          paginationUl.appendChild(paginationLi);
+        }
+
+        for (var i = 1; i <= maxPage; i++) {
+          var paginationLi = document.createElement("li");
+          paginationLi.classList.add("page-item");
+          if (page === i) {
+            paginationLi.classList.add("active");
+          }
+
+          var pageLink = document.createElement("a");
+          pageLink.classList.add("page-link");
+          pageLink.href = "#";
+          pageLink.innerHTML = i;
+
+          pageLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (!e.target.parentElement.classList.contains("active")) {
+              setPage(parseInt(e.target.innerText));
+            }
+          });
+
+          paginationLi.appendChild(pageLink);
+          paginationUl.appendChild(paginationLi);
+        }
+
+        //next button
+        if (page < maxPage) {
+          var paginationLi = document.createElement("li");
+          paginationLi.classList.add("page-item");
+          var pageLink = document.createElement("a");
+          pageLink.classList.add("page-link");
+          pageLink.href = "#";
+          pageLink.innerHTML = "Sau";
+          pageLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            setPage(page + 1);
+          });
+          paginationLi.appendChild(pageLink);
+          paginationUl.appendChild(paginationLi);
+        }
+
+        paginationOutput.appendChild(paginationUl);
       }
     });
 };
 
-getUsers();
+var params = new URLSearchParams(window.location.search);
+if (params.get("page")) {
+  currentPage = parseInt(params.get("page"));
+}
+
+getUsers({}, limit, currentPage);
+
+var setPage = function (page) {
+  currentPage = page;
+
+  getUsers(filters, limit, page);
+
+  window.history.pushState({}, "", "?page=" + page);
+};
 
 addBtn.addEventListener("click", function (e) {
   addModal.show();
@@ -140,7 +237,7 @@ addModalObj.querySelector("form").addEventListener("submit", function (e) {
       addModal.hide();
 
       //Render table
-      getUsers();
+      getUsers({}, limit);
 
       //Reset Form
       addModalObj.querySelector("form").reset();
@@ -188,7 +285,7 @@ var editUser = function (user) {
         editModal.hide();
 
         //Render table
-        getUsers();
+        getUsers({}, limit, currentPage);
 
         //Reset Form
         editModalObj.querySelector("form").reset();
@@ -218,7 +315,7 @@ var deleteUser = function (user) {
       }).then((res) => {
         if (res.ok) {
           Swal.fire("Xong!", "Người dùng đã bị xóa.", "success");
-          getUsers(); //Render table
+          getUsers({}, limit); //Render table
         } else {
           Swal.fire("Lỗi!", "Người dùng xóa không thành công.", "error");
         }
@@ -232,7 +329,8 @@ filterForm.addEventListener("submit", function (e) {
   var keyword = this.querySelector('[name="keyword"]').value;
   var statusText = this.querySelector('[name="status"]').value;
 
-  const filters = {};
+  //reset filters
+  filters = {};
 
   if (statusText !== "all") {
     var status = statusText === "active" ? true : false;
@@ -243,7 +341,15 @@ filterForm.addEventListener("submit", function (e) {
     filters.q = keyword;
   }
 
-  getUsers(filters);
+  getUsers(filters, limit);
+});
+
+//Chức năng đăng xuất
+var logout = document.querySelector(".logout");
+logout.addEventListener("click", function (e) {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  window.location.reload();
 });
 
 /*
