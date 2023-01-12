@@ -1,7 +1,37 @@
+var apiServerAuth = `http://localhost:3001`;
+
+var username = document.querySelector(".username");
+
 //Check login
-if (!localStorage.getItem("token")) {
-  window.location.href = "login.html";
+
+if (localStorage.getItem("token") && localStorage.getItem("user_id")) {
+  var token = localStorage.getItem("token");
+  var userId = localStorage.getItem("user_id");
+
+  fetch(`${apiServerAuth}/640/users/${userId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (response) {
+      if (typeof response !== "object") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+
+        window.location.href = "/login.html";
+      } else {
+        username.innerText = response.name;
+      }
+    });
+} else {
+  window.location.href = "/login.html";
 }
+
 //var res = fetch("http://localhost:3000/users"); //trả về 1 promise
 
 var addBtn = document.querySelector(".btn-add");
@@ -349,6 +379,7 @@ var logout = document.querySelector(".logout");
 logout.addEventListener("click", function (e) {
   e.preventDefault();
   localStorage.removeItem("token");
+  localStorage.removeItem("user_id");
   window.location.reload();
 });
 

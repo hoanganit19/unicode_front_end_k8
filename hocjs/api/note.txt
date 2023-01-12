@@ -106,3 +106,23 @@ Khi xóa => Gửi thiết bị đang xóa
 => Giả lập server Authentication: json-server-auth
 
 Authorization => Phân quyền => Được làm gì
+
+Trên thực tế
+
+Quá trình check user với server 
+
+Ví dụ: http://api.unicode.vn/user (Kèm bearer token)
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbnR1YW5AZ21haWwuY29tIiwiaWF0IjoxNjczNDQ2NzQ1LCJleHAiOjE2NzM0NTAzNDUsInN1YiI6IjMifQ.nsDC3jC8KtHe4OAxehXKcY3BPuMKH9i5iK-91yJCZcU
+
+=> JSON WEB TOKEN => Chuỗi token dùng để truyền các gói tin qua API
+
+Tổng kết: 
+
+- Cách fetch api: get, post, put, patch, delete
+- Authentication, Authorization
+
+Lưu ý: 
+
+- Headers, Http Response Status Code => https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+- Cứ làm việc với api => Bắt buộc phải có loading

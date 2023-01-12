@@ -28,20 +28,23 @@ if (localStorage.getItem("token") && localStorage.getItem("user_id")) {
 var loginForm = document.querySelector(".login");
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  var name = this.querySelector('[name="name"]').value;
   var email = this.querySelector('[name="email"]').value;
   var password = this.querySelector('[name="password"]').value;
 
-  if (email && password) {
+  if (name && email && password) {
     var button = this.querySelector("button");
     var initialButtonText = button.innerText;
     button.innerText = "Đang xử lý...";
     button.disabled = true;
-    fetch(`${apiServerAuth}/login`, {
+    fetch(`${apiServerAuth}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: name,
         email: email,
         password: password,
       }),
@@ -52,26 +55,18 @@ loginForm.addEventListener("submit", function (e) {
       .then(function (response) {
         button.innerText = initialButtonText;
         button.disabled = false;
+        console.log(response);
 
         if (typeof response === "object") {
-          console.log(response);
-          localStorage.setItem("token", response.accessToken);
+          var accessToken = response.accessToken;
+          localStorage.setItem("token", accessToken);
           localStorage.setItem("user_id", response.user.id);
           window.location.reload();
         } else {
-          alert("Email hoặc mật khẩu không chính xác");
+          alert("Đăng ký không thành công! Vui lòng kiểm tra lại thông tin!");
         }
       });
   } else {
     alert("Vui lòng nhập email và password");
   }
 });
-
-fetch("https://reqres.in/api/users")
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (response) {
-    console.log(response);
-  });
-console.log("step");
