@@ -46,4 +46,41 @@ Toán tử sẽ sử dụng trong jsx
 
 - toán tử 3 ngôi
 - toán tử ??
-- toán tử &
+- toán tử &&
+
+Để hiển thị 1 danh sách lên jsx
+
+- Chuyển thành dạng mảng
+- Mỗi phần tử mảng sẽ là jsx
+
+Props
+
+- Tồn tại trong component và jsx
+- Props giống như 1 thuộc tính của thẻ html
+- Nhận props trong components => Nhận qua tham số của hàm (object)
+- Props dùng để truyền dữ liệu từ component cha xuống component con
+- Component không được phép cập nhật lại giá trị của Props
+
+Render Props
+
+- Đồng bộ dữ liệu giữa các component ngang hàng với nhau
+- Two-way data binding
+
+Children Props
+
+- Props đặc biệt có tên `children`
+- Thể hiện nội dung của 1 components: <Component>Nội dung</Component>
+
+Functional Component và Class Component
+
+- Học cả 2
+- Lý do: Vừa giúp ích cho công việc, vừa hiểu rõ hơn về các thành phần của React: state, Lifecycle,...
+
+State (Data)
+
+- Quản lý dữ liệu trong 1 component
+- Trong Class Component => Có sẵn thuộc tính `this.state`
+- Khi State thay đổi => Component tự động re-render
+- Để cập nhật State => Sử dụng phương thức `this.setState()`
+- Tuyệt đối không được thay đổi trực tiếp thuộc tính `this.state` (Gây ra lỗi)
+- Hàm `this.setState()` là 1 hàm bất đồng bộ, tuy nhiên giá trị State sẽ không thay đổi luôn ngay sau khi hàm setState được gọi
