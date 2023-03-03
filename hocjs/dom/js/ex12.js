@@ -95,11 +95,14 @@ playerRange.addEventListener("input", function () {
   playerCurrentTime.innerText = getMins(currentTime);
 
   isSeek = true; //Đang tua nhạc
+
+  console.log("event input");
 });
 
 playerRange.addEventListener("change", function () {
   audio.currentTime = currentTime;
   isSeek = false; //Dừng tua nhạc
+  console.log("event change");
 });
 
 playerRange.addEventListener("mousemove", function (e) {

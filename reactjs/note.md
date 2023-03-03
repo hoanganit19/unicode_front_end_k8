@@ -84,3 +84,33 @@ State (Data)
 - Để cập nhật State => Sử dụng phương thức `this.setState()`
 - Tuyệt đối không được thay đổi trực tiếp thuộc tính `this.state` (Gây ra lỗi)
 - Hàm `this.setState()` là 1 hàm bất đồng bộ, tuy nhiên giá trị State sẽ không thay đổi luôn ngay sau khi hàm setState được gọi
+
+Xử lý Form
+
+- Tạo state lưu trữ dữ liệu các input
+- Lấy giá trị các ô input và lưu state (Sự kiện onChange)
+- Xử lý submit form
+
+Thực hành: Xây dựng TodoList App
+
+- Mục tiêu
+
+* Thành thạo về việc phân tích và cập nhật State
+* Phân chia các component
+* Sử dụng Render Props để share state
+
+* Có 3 component:
+
+- Todos: Component chính
+- ShowTodos: Component hiển thị danh sách các công việc
+- AddTodo: Component hiển thị form thêm công việc
+
+* Phân tích data:
+
+- Khi dữ liệu được add vào component `AddTodo` => Dữ liệu sẽ được cập nhật vào State chung
+- State chung sẽ cần render ra component `ShowTodos`
+
+Buổi sau:
+
+- Lifcycle Component (vòng đời component)
+- Call Api trong react
