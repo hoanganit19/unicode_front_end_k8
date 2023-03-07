@@ -114,3 +114,14 @@ Buổi sau:
 
 - Lifcycle Component (vòng đời component)
 - Call Api trong react
+
+Tổng kết:
+
+- Nắm kỹ vòng đời component
+- Call api: Quy trình call api, vị trí gọi
+
+Buổi sau:
+
+- Refs (Sử dụng DOM trong React JS)
+- Context API
+- Thực hành build StateProvider => Quản lý Global State
