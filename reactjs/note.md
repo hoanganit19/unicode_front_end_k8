@@ -123,5 +123,34 @@ Tổng kết:
 Buổi sau:
 
 - Refs (Sử dụng DOM trong React JS)
+- forwardRef
+- Higher Order Components
+- React.memo
+
+## Refs
+
+- Sử dụng để thao tác DOM thật
+- Khởi tạo refs: React.createRef()
+- Tham chiếu ref vào element: Sử dụng thông qua props ref
+- Sử dụng: tendoituongRef.current => Trả về 1 Node Dom
+
+## forwardRef
+
+- Khi làm việc với Ref => Chỉ tham chiếu trực tiếp tới Element thông qua prop ref
+- Muốn tham chiếu tới element thông qua Component => Bọc component vào trong 1 component forwardRef (Higher Order Components)
+
+## Higher Order Components
+
+- Higher Order Components là 1 component được bọc 1 component khác
+- HOC nhận vào 1 component và return ra chính component đó
+- Sử dụng HOC để kế thừa logic và giải quyết các bài toán phức tạp trong Class Component
+
+## Làm việc với Higher Order Component: React.memo
+
+- Ngăn không cho component con re-render khi không có sự thay đổi về props
+- Nếu props thay đổi => memo sẽ không chặn re-render
+
+Buổi sau:
+
 - Context API
 - Thực hành build StateProvider => Quản lý Global State
