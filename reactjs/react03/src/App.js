@@ -1,18 +1,10 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Ref01 from "./Component/Ref01";
-import Audio from "./Component/Audio";
+import React from "react";
 import Counter from "./Component/Counter";
+import PostDetail from "./PostDetail/PostDetail";
+// import StateProvider from "./StateProvider/StateProvider";
 
-function App() {
-  return (
-    <>
-      {/* <Audio />
-      <hr />
-      <Ref01 /> */}
-      <Counter />
-    </>
-  );
-}
+const App = () => {
+  return <PostDetail />;
+};
 
 export default App;

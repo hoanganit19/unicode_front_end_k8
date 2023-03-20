@@ -154,3 +154,21 @@ Buổi sau:
 
 - Context API
 - Thực hành build StateProvider => Quản lý Global State
+
+## Context API
+
+- Truyền dữ liệu từ component cha xuống các component mà không cần truyền qua props
+- Cấu tạo Context
+
+* createContext() => Khởi tạo từ component cha
+* Provider => Khởi tạo từ component cha, gửi dữ liệu
+* Comsumer => Nhận dữ liệu ở component con
+
+Giải pháp nhận dữ liệu Context
+
+- Class Component => Viết Higher Order Component
+- Function Component => Sử dụng Hook useContext
+
+Buổi sau:
+
+React Router Dom => Tạo Url cho 1 project React JS
