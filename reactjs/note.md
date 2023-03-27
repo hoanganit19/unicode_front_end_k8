@@ -172,3 +172,37 @@ Giải pháp nhận dữ liệu Context
 Buổi sau:
 
 React Router Dom => Tạo Url cho 1 project React JS
+
+- Có 2 loại Route
+
+* Public Route => Bất kì ai cũng có thể truy cập vào được
+* Protected Route => Route sẽ được bảo vệ bởi 1 component (Điều kiện logic: đăng nhập)
+
+Nested Route
+
+- Các Route được gom nhóm lại với nhau
+- Ví dụ:
+  /auth/login
+  /auth/logout
+  /auth/register
+- Các Route được gom nhóm không giới hạn
+
+/admin/products
+/admin/products/add
+/admin/products/edit
+/admin/products/delete
+
+=> Nhóm admin và nhóm products
+
+Protected Routes
+
+- Bảo vệ bởi 1 component
+- Tìm hiểu 2 Component: Navigate và Outlet
+
+Route => Component
+
+Page not found => path = `*`
+
+Dynamic route => Thêm tham số vào url
+
+Buổi sau: Tiếp tục React Router Dom
