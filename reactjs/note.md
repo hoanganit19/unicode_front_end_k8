@@ -203,6 +203,53 @@ Route => Component
 
 Page not found => path = `*`
 
-Dynamic route => Thêm tham số vào url
+Dynamic route => Thêm tham số vào url => useParams
 
-Buổi sau: Tiếp tục React Router Dom
+Search Params => useSearchParams => Xem lại UrlSearchParams bên Javascript
+
+useLocation => Xem lại window.location
+
+## React Hook
+
+- Code React bằng class component (extends từ React.Component)
+- Functional Component => Không thể sử dụng được các thành phần: state, licycle component,...
+- Hook: Cho phép sử dụng các thành phần bên trong React Component: state, licycle component,...
+
+- Hook nó là function đặc biệt
+
+* Bắt đầu từ khóa use
+* Chỉ được gọi trong functional component
+* Chỉ được gọi tại vị trí top level trong function component
+
+- Hook là 1 món quà mà React mang lại cho lập trình viên: Code ngắn gọn hơn, làm được nhiều việc hơn
+
+- Hook cho phép lập trình viên tự tạo ra Hook riêng
+
+Ví dụ:
+`const Home = () => {
+  //Call Hook
+  const handleABC = () => {
+    //Can't call Hook
+  }
+}`
+
+Những hook sẽ học trong React JS
+
+- useState() => Quản lý các state trong React
+- useEffect() => Mô phỏng lại vòng đời component (Lifecycle Component)
+- useContext() => Lấy dữ liệu từ context
+- useRef() => Tạo và làm việc với Ref
+- useId() => Tự động tạo id cho thuộc tính html
+- useImperativeHandle() => Quản lý ref
+- useLayoutEffect() => Giống Effect, chỉ thay đổi giữa thứ tự chạy callback và update UI
+- useCallback() => Xử lý tối ưu hiệu năng với callback (function)
+- useMemo() => Xử lý tối ưu hiệu năng với logic (Không nhầm lẫn với React.memo)
+- useTransition()
+- useDeferredValue()
+  => Liên quan đến hiệu năng, trải nghiệm
+
+- useReducer => Làm việc với State nâng cao (Làm việc thông qua Reducer)
+
+- Custom Hooks
+
+## Redux
