@@ -250,6 +250,12 @@ Những hook sẽ học trong React JS
 
 - useReducer => Làm việc với State nâng cao (Làm việc thông qua Reducer)
 
+- State Global = Context API + useReducer
+
 - Custom Hooks
 
 ## Redux
+
+- Redux Core => hiểu các thành phần của Redux
+- Redux Toolkit => Sử dụng chính khi đi làm
+- Redux Thunk (Middleware) => Thường dùng để call api
