@@ -259,3 +259,78 @@ Những hook sẽ học trong React JS
 - Redux Core => hiểu các thành phần của Redux
 - Redux Toolkit => Sử dụng chính khi đi làm
 - Redux Thunk (Middleware) => Thường dùng để call api
+
+### Vấn đề
+
+- State chỉ hoạt động trong nội bộ componnent
+- Chia sẻ state tới các component khác:
+
+* Render Props
+* Context
+* Thư viện ngoài: Redux
+
+### Redux là gì?
+
+- Không phải sinh ra để dành cho React
+- Sử dụng để quản lý Global State (State Container)
+
+Ưu điểm:
+
+- Phổ biến
+- Hỗ trợ mọi thứ
+
+Nhược điểm:
+
+- Với dự án nhỏ => Nặng
+- Khó học
+
+### Cách học Redux
+
+- Redux Core: Khó setup, hiểu rõ cách hoạt động của Redux
+- Redux Tookit: ưGiống nh 1 bản đóng gói (Kiểu như Create React App), Setup nhanh, khó hiểu => Áp dụng vào dự án thực tế
+- Redux Middleware: Thunk, Saga => Thường được sử dụng để call api, logger,...
+
+### Các thành phần của Redux
+
+- Store => Kho lưu trữ chung
+- Reducer
+
+* Nó là 1 function
+* Dùng để viết các logic update state
+
+Lưu ý: Nên chia nhỏ Reducer tương ứng với các module
+
+- Dispatch: Đẩy hành động + data lên Reducer (Sử dụng thông qua hook useDispatch)
+
+- Action:
+
+* Là 1 object
+* Sử dụng để dispatch lên Reducer (Tham số của Dispatch)
+
+- Selector: Dùng để đọc dữ liệu từ Redux xuống Component (Sử dụng thông qua hook useSelector)
+
+- Action Creator: Hàm để tạo 1 action
+
+Cách tách Reducer trong Redux
+
+- Tạo Reducer theo tên module: counterReducer, todoReducer, productReducer,...
+
+- Nối các Reducer lại thành 1 reducer có tên rootReducer để đưa vào createStore (Sử dụng hàm combineReducers để nối)
+
+### Redux Thunk
+
+UI (Component) => Dispatch => Middleware (Call api,...) => Dispatch => Reducer
+
+Redux Thunk thực chất là 1 function, trong function đó sẽ return về 1 function khác (Closure)
+
+const fetchTodos = () => {
+return (dispatch, getState) => {
+//dispatch => Dùng để dispatch tới Reducer
+//getState => Dùng để lấy tất cả state trên store
+}
+}
+
+Buổi sau: Hướng dẫn Redux Tookit + Redux Thunk trong Redux Tookit
+=> Tìm hiểu hàm createAsyncThunk()
+
+Về nhà: xây dựng todos list sử dụng api + redux core + redux thunk

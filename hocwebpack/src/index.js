@@ -4,7 +4,7 @@ import { Product } from "./components/Product";
 
 const component = () => {
   const h1 = document.createElement("h1");
-  h1.innerText = "Xin chào Unicode - Javascript: ";
+  h1.innerText = "Xin chào Unicode - Javascript 123";
   h1.classList.add("title");
   h1.style.color = "red";
   h1.style.fontStyle = "italic";
