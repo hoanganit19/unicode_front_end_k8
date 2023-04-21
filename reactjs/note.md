@@ -334,3 +334,16 @@ Buổi sau: Hướng dẫn Redux Tookit + Redux Thunk trong Redux Tookit
 => Tìm hiểu hàm createAsyncThunk()
 
 Về nhà: xây dựng todos list sử dụng api + redux core + redux thunk
+
+### Redux Toolkit
+
+1. slice
+
+- Tương ứng 1 module
+- Bao gồm: Reducer, Action, Action Creator,...
+
+2. selector
+
+3. middleware
+
+Hàm createAsyncThunk()
